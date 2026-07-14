@@ -81,7 +81,7 @@ Create a new, empty folder to work in and place every file from this section ins
 
 ### Step 1: The Fortran Source File
 
-Save the following as `mysub.f90`.
+Open the file [mysub.f90](/mysub.f90).
 
 The `iso_c_binding` module and the `real(c_double)` type are what guarantee this data will line up byte-for-byte with a C `double` — and, in turn, with MATLAB's default `double` type.
 
@@ -106,7 +106,7 @@ The output must contain the word `arm64`. If it says `x86_64` instead, gfortran 
 
 ### Step 2: The C Gateway File
 
-Save the following as `fortran_gateway.c` in the *same* folder.
+Save the file [fortran_gateway.c](/fortran_gateway.c) in the *same* folder.
 
 A few things worth understanding line by line:
 
@@ -116,7 +116,7 @@ A few things worth understanding line by line:
 
 ### Step 3: Compile and Run, Inside MATLAB
 
-Save the following as `demo_fortran_library.m` in the same folder, then open MATLAB, `cd` into that folder, and run it.
+Save the file [demo_fortran_library.m](/demo_fortran_library.m) in the same folder, then open MATLAB, `cd` into that folder, and run it.
 
 
 > **Note:** The `install_name_tool` call rewrites the `.dylib`'s internal identity so that MATLAB's MEX binary can find it at `@loader_path` (i.e. "wherever the calling binary lives") rather than at the absolute path where it was originally compiled. Without this, the compiled `fortran_gateway` MEX file may fail to locate `libmysub.dylib` once moved or shared to another machine.
@@ -143,7 +143,9 @@ MATLAB received output value: 9
 The scalar example above generalizes directly to arrays and matrices.
 
 
-### Step 1: Fortran Source (`matrix_mult.f90`)
+### Step 1: Fortran Source
+
+Download the file [matrix_mult.f90](/matrix_mult.f90).
 
 
 Compile it the same way as before:
@@ -153,12 +155,15 @@ gfortran -c -fPIC matrix_mult.f90 -o matrix_mult.o
 gfortran -shared -o libmatrixmult.dylib matrix_mult.o
 ```
 
-### Step 2: C Gateway (`matrix_gateway.c`)
+### Step 2: C Gateway
+
+Download the gateway file [matrix_gateway.c](/matrix_gateway.c).
 
 
 
 ### Step 3: MATLAB Driver Script
 
+Download and run the MATLAB driver script file in [demo_matrix_library.m](/demo_matrix_library.m).
 
 ---
 
