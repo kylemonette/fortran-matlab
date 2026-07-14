@@ -5,6 +5,11 @@
 
 #### Updated: July 14, 2026
 
+## Disclaimer:
+
+These instructions have not been audited carefully for mistakes, errors, or inefficiencies, and the majority of the content was generated with the help of Claude.
+This repository is provided as-is, with no warranty of correctness or fitness for any particular purpose. I take no responsibility for any unintended consequences of using these files. Most likely, I will not troubleshoot issues that come up, though I may look into ones that meaningfully improve the quality of the material.
+
 ## Why This Guide Exists
 
 MATLAB on Apple Silicon (M1/M2/M3/M4) Macs no longer supports the legacy commercial Fortran compilers that older Intel-based MATLAB installations relied on. The only Fortran compiler MATLAB's own toolchain documentation points to on ARM64 is the commercial NAG compiler. If you don't have a NAG license, you can still compile and call your own Fortran routines using the free, open-source `gfortran` compiler — you just need one extra bridging step. This document walks through that process end to end, using a minimal worked example, and assumes only that you have a Mac with [Homebrew](https://brew.sh) installed but have never done this before.
