@@ -1,9 +1,10 @@
 # Calling Custom Fortran Code from MATLAB
 ### A Step-by-Step Guide for Apple Silicon (ARM64) Macs
 
-### Author: Kyle Monette
+### Author: Kyle Monette, [kylemonette.github.io](https://kylemonette.github.io)
 
-#### Updated: July 14, 2026
+
+#### Updated: July 21, 2026
 
 ## Disclaimer:
 
