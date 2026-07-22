@@ -1,4 +1,7 @@
 #include "mex.h"
+// AUTHOR: Kyle Monette
+// REPOSITORY: https://github.com/kylemonette/fortran-matlab
+
 
 // Declare external Fortran routine (note trailing underscore)
 extern void compute_product_(double *val1, double *val2, double *result);

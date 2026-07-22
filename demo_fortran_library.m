@@ -1,34 +1,28 @@
-% MATLAB Demonstration: Running Arbitrary Fortran via C Gateway
+%DEMO_FORTRAN_LIBRARY
+%   Running Arbitrary Fortran via C Gateway
+%
+%   AUTHOR: Kyle Monette
+%   REPOSITORY: https://github.com/kylemonette/fortran-matlab
+%
+
 clc; clear;
-fprintf('=== Starting Fortran-MATLAB Integration Demo ===\n\n');
+fprintf('Starting Fortran-MATLAB Integration Demo\n\n');
 
-% Fix macOS Dynamic Library Runtime Path
-% Tells macOS to look inside the active MEX binary folder to locate the .dylib
-fprintf('Applying macOS library path fix...\n');
-[status, cmdout] = system('install_name_tool -id "@loader_path/libmysub.dylib" libmysub.dylib');
-if status ~= 0
-    error('Failed to update dylib path identity: %s', cmdout);
-end
+% Compile mysub.f90 + fortran_gateway.c into the fortran_gateway MEX
+% function, if needed. This is the ONLY setup step -- it locates
+% gfortran itself (see findGfortran.m) and handles the shared-library
+% linking/runtime-path fix for you. Safe to call every time.
 
-% Compile the C Gateway and Link the Fortran Library
-% -L.     -> Searches current directory for shared objects
-% -lmysub -> Looks for a library file named 'libmysub.dylib'
-fprintf('Compiling C Gateway (fortran_gateway.c) with MATLAB MEX...\n');
-try
-    mex fortran_gateway.c -L. -lmysub
-    fprintf('Success: MEX binary "fortran_gateway" created.\n\n');
-catch ME
-    rethrow(ME);
-end
+% Pass 'true' to display diagnostics - leave blank, or 'false', for none
+build_mysub(true);
 
 % Execute Module Evaluation Test
-% NOTE: Everything ABOVE this line only needs to be done ONCE. Try changing the input_val
-% variables below to see that the result stil works with different inputs!
+% Try changing the input_val variables below to see that the result
+% still works with different inputs -- no need to rebuild anything.
 
 input_val1 = 4.5; input_val2 = 2.0;
 fprintf('Calling Fortran routine with inputs: %g and %g...\n', input_val1, input_val2);
 
 fortran_output = fortran_gateway(input_val1, input_val2);
 
-fprintf('\n=== Results ===\n');
-fprintf('MATLAB received output value: %g\n', fortran_output);
+fprintf('\nMATLAB received output value: %g\n', fortran_output);

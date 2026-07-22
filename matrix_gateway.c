@@ -1,4 +1,6 @@
 #include "mex.h"
+// AUTHOR: Kyle Monette
+// REPOSITORY: https://github.com/kylemonette/fortran-matlab
 
 // Declare the external Fortran matrix subroutine (note trailing underscore)
 extern void multiply_matrices_(double *A, double *B, double *C_out);
