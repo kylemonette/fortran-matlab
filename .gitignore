@@ -4,4 +4,5 @@
 *.DS_Store
 *.mat
 *.mexmaca64
-
+*.o
+*.dylib
